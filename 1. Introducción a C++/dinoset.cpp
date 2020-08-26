@@ -15,6 +15,17 @@ enum class DinoId {
     pteranodon          // 7
 };
 
+string dino_names[] = {
+    "velocirraptor",      // 0
+    "estegosaurio",       // 1
+    "tiranosaurio",       // 2
+    "procompsagnatus",    // 3
+    "triceratops",        // 4
+    "paquicefalosaurio",  // 5
+    "parasaurolofus",     // 6
+    "pteranodon"          // 7
+};
+
 class DinoSet {
 
 public:
@@ -47,15 +58,19 @@ public:
 
     string to_string() const
     {
-        string resultado = "";
+        string resultado = "{";
+        bool primero = true;
         for (int i = 0; i < total_dinos; ++i) {
             if (_dino[i]) {
-                resultado += "1";
-            } else {
-                resultado += "0";
+                if (primero) {
+                    primero = false;
+                } else {
+                    resultado += ", ";
+                }
+                resultado += dino_names[i];
             }
         }
-        return resultado;
+        return resultado + "}";
     }
 
 private:
@@ -77,7 +92,9 @@ int main()
     b.add(DinoId::estegosaurio);
     b.add(DinoId::velocirraptor);
     DinoSet c = a + b;
+    DinoSet d;
     cout << "a = " << a << endl;
     cout << "b = " << b << endl;
     cout << "c = " << c << endl;
+    cout << "d = " << d << endl;
 }
