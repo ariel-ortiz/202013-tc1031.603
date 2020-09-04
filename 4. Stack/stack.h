@@ -64,6 +64,7 @@
         _level = 0;
     }
 
+    // Time complexity: O(N)
     string to_string() const
     {
         ostringstream oss;
