@@ -6,6 +6,7 @@
  #pragma once
 
  #include <iostream>
+ #include <sstream>
 
  using namespace std;
 
@@ -16,6 +17,7 @@
 
  public:
 
+    // Time complexity: O(1)
     void push(T obj)
     {
         if (_level == max_stack) {
@@ -25,6 +27,7 @@
         ++_level;
     }
 
+    // Time complexity: O(1)
     T pop()
     {
         if (is_empty()) {
@@ -34,17 +37,62 @@
         return _info[_level];
     }
 
+    // Time complexity: O(1)
+    T peek() const
+    {
+        if (is_empty()) {
+            throw underflow_error("Stack underflow.");
+        }
+        return _info[_level - 1];
+    }
+
+    // Time complexity: O(1)
     int size() const
     {
         return _level;
     }
 
+    // Time complexity: O(1)
     bool is_empty() const
     {
         return size() == 0;
+    }
+
+    // Time complexity: O(1)
+    void clear()
+    {
+        _level = 0;
+    }
+
+    string to_string() const
+    {
+        ostringstream oss;
+
+        oss << "TOP -> {";
+
+        bool primero = true;
+
+        for (int i = _level - 1; i >= 0; --i) {
+            if (primero) {
+                primero = false;
+            } else {
+                oss << ", ";
+            }
+            oss << _info[i];
+        }
+
+        oss << "}";
+
+        return oss.str();
     }
 
  private:
     T _info[max_stack] {};
     int _level {};
  };
+
+ template<typename T>
+ ostream& operator<<(ostream& os, const Stack<T>& stack)
+ {
+     return os << stack.to_string();
+ }
