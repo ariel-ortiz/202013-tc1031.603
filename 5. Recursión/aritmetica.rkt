@@ -30,3 +30,31 @@
     (if (zero? a)
         a
         (add (mul (dec a) b) b))))
+
+(define less?
+  (lambda (a b)
+    (if (zero? a)
+        (if (zero? b)
+            #f
+            #t)
+        (if (zero? b)
+            #f
+            (less? (dec a) (dec b))))))
+
+(define div
+  (lambda (a b)
+    (if (less? a b)
+        (sub a a) ; zero
+        (inc (div (sub a b) b)))))
+
+(define rem
+  (lambda (a b)
+    (if (less? a b)
+        a
+        (rem (sub a b) b))))
+
+(define pow
+  (lambda (a b)
+    (if (zero? b)
+        (inc b)
+        (mul a (pow a (dec b))))))
