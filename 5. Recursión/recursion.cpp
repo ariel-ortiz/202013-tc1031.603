@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+// Time complexity: O(N)
 int fact(int n)
 {
     if (n == 0) {
@@ -11,6 +13,7 @@ int fact(int n)
     }
 }
 
+// Time complexity: O(2^N)
 void hanoi(int n, char origen, char destino, char temp)
 {
     if (n > 0) {
