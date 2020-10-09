@@ -62,6 +62,11 @@ bool existe(Nodo* inicio, char x)
 
 }
 
+void duplica(Nodo* inicio)
+{
+
+}
+
 int main()
 {
     Nodo* lst = nullptr;
