@@ -59,12 +59,24 @@ void libera_lista(Nodo* inicio)
 
 bool existe(Nodo* inicio, char x)
 {
-
+    while (inicio != nullptr) {
+        if (inicio->data == x) {
+            return true;
+        }
+        inicio = inicio->next;
+    }
+    return false;
 }
 
 void duplica(Nodo* inicio)
 {
-
+    while (inicio != nullptr) {
+        Nodo* nuevo = new Nodo;
+        nuevo->data = inicio->data;
+        nuevo->next = inicio->next;
+        inicio->next = nuevo;
+        inicio = inicio->next->next;
+    }
 }
 
 int main()
@@ -77,6 +89,13 @@ int main()
     lst = inserta_inicio(lst, 'X');
 
     cout << longitud(lst) << endl;
+    imprime_lista(lst);
+
+    cout << boolalpha;
+    cout << existe(lst, 'A') << endl;
+    cout << existe(lst, 'W') << endl;
+
+    duplica(lst);
     imprime_lista(lst);
 
     libera_lista(lst);
