@@ -38,12 +38,12 @@ int longitud(Nodo* inicio)
 }
 
 // Time complexity: O(1)
-Nodo* inserta_inicio(Nodo* inicio, char data)
+void inserta_inicio(Nodo*& inicio, char data)
 {
     Nodo* nuevo = new Nodo;
     nuevo->data = data;
     nuevo->next = inicio;
-    return nuevo;
+    inicio = nuevo;
 }
 
 // Time complexity: O(N)
@@ -79,14 +79,46 @@ void duplica(Nodo* inicio)
     }
 }
 
+bool borra(Nodo*& inicio, char data)
+{
+    // Lista vacía, nada que borrar
+    if (inicio == nullptr) {
+        return false;
+    }
+
+    // ¿Hay que borrar el primero nodo?
+    if (inicio->data == data) {
+        Nodo* anterior = inicio;
+        inicio = inicio->next;
+        delete anterior;
+        anterior = nullptr;
+        return true;
+    }
+
+    // Para otros elementos
+    Nodo* anterior = inicio;
+    Nodo* actual = inicio->next;
+    while (actual != nullptr) {
+        if (actual->data == data) {
+            anterior->next = actual->next;
+            delete actual;
+            actual = nullptr;
+            return true;
+        }
+        anterior = actual;
+        actual = actual->next;
+    }
+    return false;
+}
+
 int main()
 {
     Nodo* lst = nullptr;
 
-    lst = inserta_inicio(lst, 'C');
-    lst = inserta_inicio(lst, 'B');
-    lst = inserta_inicio(lst, 'A');
-    lst = inserta_inicio(lst, 'X');
+    inserta_inicio(lst, 'C');
+    inserta_inicio(lst, 'B');
+    inserta_inicio(lst, 'A');
+    inserta_inicio(lst, 'X');
 
     cout << longitud(lst) << endl;
     imprime_lista(lst);
@@ -96,6 +128,24 @@ int main()
     cout << existe(lst, 'W') << endl;
 
     duplica(lst);
+    imprime_lista(lst);
+
+    cout << borra(lst, 'X') << endl;
+    imprime_lista(lst);
+
+    cout << borra(lst, 'B') << endl;
+    imprime_lista(lst);
+
+    cout << borra(lst, 'W') << endl;
+    imprime_lista(lst);
+
+    cout << borra(lst, 'C') << endl;
+    imprime_lista(lst);
+
+    cout << borra(lst, 'C') << endl;
+    imprime_lista(lst);
+
+    cout << borra(lst, 'X') << endl;
     imprime_lista(lst);
 
     libera_lista(lst);
