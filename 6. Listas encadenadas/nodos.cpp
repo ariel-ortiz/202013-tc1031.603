@@ -115,7 +115,26 @@ bool borra(Nodo*& inicio, char data)
 
 void inserta_orden(Nodo*& inicio, char data)
 {
+    Nodo* nuevo = new Nodo;
+    nuevo->data = data;
+    nuevo->next = nullptr;
 
+    if (inicio == nullptr) {
+        inicio = nuevo;
+    } else if (data <= inicio->data) {
+        nuevo->next = inicio;
+        inicio = nuevo;
+    } else {
+        Nodo* anterior = inicio;
+        Nodo* actual = inicio->next;
+
+        while (actual != nullptr && data > actual->data) {
+            anterior = actual;
+            actual = actual->next;
+        }
+        anterior->next = nuevo;
+        nuevo->next = actual;
+    }
 }
 
 int main()
@@ -128,6 +147,7 @@ int main()
     inserta_orden(lst, 'W');
     inserta_orden(lst, 'A');
     inserta_orden(lst, 'T');
+    inserta_orden(lst, 'W');
 
     cout << longitud(lst) << endl;
     imprime_lista(lst);  // A B C T W X
