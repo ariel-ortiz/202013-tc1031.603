@@ -38,6 +38,7 @@ int longitud(Nodo* inicio)
 }
 
 // Time complexity: O(1)
+/*
 void inserta_inicio(Nodo*& inicio, char data)
 {
     Nodo* nuevo = new Nodo;
@@ -45,6 +46,7 @@ void inserta_inicio(Nodo*& inicio, char data)
     nuevo->next = inicio;
     inicio = nuevo;
 }
+*/
 
 // Time complexity: O(N)
 void libera_lista(Nodo* inicio)
@@ -111,17 +113,24 @@ bool borra(Nodo*& inicio, char data)
     return false;
 }
 
+void inserta_orden(Nodo*& inicio, char data)
+{
+
+}
+
 int main()
 {
     Nodo* lst = nullptr;
 
-    inserta_inicio(lst, 'C');
-    inserta_inicio(lst, 'B');
-    inserta_inicio(lst, 'A');
-    inserta_inicio(lst, 'X');
+    inserta_orden(lst, 'X');
+    inserta_orden(lst, 'C');
+    inserta_orden(lst, 'B');
+    inserta_orden(lst, 'W');
+    inserta_orden(lst, 'A');
+    inserta_orden(lst, 'T');
 
     cout << longitud(lst) << endl;
-    imprime_lista(lst);
+    imprime_lista(lst);  // A B C T W X
 
     cout << boolalpha;
     cout << existe(lst, 'A') << endl;
