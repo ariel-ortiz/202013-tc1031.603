@@ -29,7 +29,12 @@ public:
 
     void insert_back(T data)
     {
-
+        Node* new_node = new Node(data);
+        new_node->next = _sentinel;
+        _sentinel->prev->next = new_node;
+        new_node->prev = _sentinel->prev;
+        _sentinel->prev = new_node;
+        ++_count;
     }
 
     int size() const
