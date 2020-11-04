@@ -18,6 +18,9 @@ public:
         _count = 0;
     }
 
+    LinkedList(const LinkedList<T>&) = delete;
+    LinkedList<T>& operator=(const LinkedList<T>&) = delete;
+
     ~LinkedList()
     {
         _sentinel->prev->next = nullptr;

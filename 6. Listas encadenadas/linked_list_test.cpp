@@ -24,7 +24,5 @@ int main()
     str_list.insert_back("mandril");
     cout << str_list << endl;
 
-    LinkedList<int> list2 = int_list;
-
     return 0;
 }
