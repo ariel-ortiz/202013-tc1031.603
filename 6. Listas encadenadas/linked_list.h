@@ -63,15 +63,14 @@ public:
         ostringstream oss;
         oss << "[";
         bool first_time = true;
-        Node* current = _sentinel->next;
-        while (current != _sentinel) {
+
+        for (T data: *this) {
             if (first_time) {
                 first_time = false;
             } else {
                 oss << ", ";
             }
-            oss << current->data;
-            current = current->next;
+            oss << data;
         }
         oss << "]";
         return oss.str();
@@ -85,6 +84,7 @@ public:
 
 private:
 
+    //---------------------------------------------------------------
     struct Node {
         Node() {}
         Node(T d): data(d) {}
@@ -93,8 +93,52 @@ private:
         Node* prev = nullptr;
     };
 
+    //---------------------------------------------------------------
+    class ListIterator {
+
+    public:
+
+        ListIterator(Node* current)
+        {
+            _current = current;
+        }
+
+        T operator*() const
+        {
+            return _current->data;
+        }
+
+        void operator++()
+        {
+            _current = _current->next;
+        }
+
+        bool operator!=(const ListIterator& other)
+        {
+            return _current != other._current;
+        }
+
+    private:
+
+        Node* _current;
+    };
+
+    //---------------------------------------------------------------
+
     Node* _sentinel;
     int _count;
+
+public:
+
+    ListIterator begin() const
+    {
+        return ListIterator(_sentinel->next);
+    }
+
+    ListIterator end() const
+    {
+        return ListIterator(_sentinel);
+    }
 };
 
 template<typename T>
