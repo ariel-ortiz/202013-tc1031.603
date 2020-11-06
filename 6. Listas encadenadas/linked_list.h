@@ -10,6 +10,7 @@ class LinkedList {
 
 public:
 
+    // O(1)
     LinkedList()
     {
         _sentinel = new Node;
@@ -21,6 +22,7 @@ public:
     LinkedList(const LinkedList<T>&) = delete;
     LinkedList<T>& operator=(const LinkedList<T>&) = delete;
 
+    // O(N)
     ~LinkedList()
     {
         _sentinel->prev->next = nullptr;
@@ -33,6 +35,7 @@ public:
         }
     }
 
+    // O(1)
     void insert_front(T data)
     {
         Node* new_node = new Node(data);
@@ -43,6 +46,7 @@ public:
         ++_count;
     }
 
+    // O(1)
     void insert_back(T data)
     {
         Node* new_node = new Node(data);
@@ -53,6 +57,7 @@ public:
         ++_count;
     }
 
+    // O(N)
     string to_string() const
     {
         ostringstream oss;
@@ -72,6 +77,7 @@ public:
         return oss.str();
     }
 
+    // O(1)
     int size() const
     {
         return _count;
