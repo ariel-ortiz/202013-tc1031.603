@@ -18,10 +18,7 @@ int main()
 
     cout << int_list.size() << endl;
 
-    LinkedList<string> str_list;
-    str_list.insert_back("gorila");
-    str_list.insert_back("chimpancé");
-    str_list.insert_back("mandril");
+    LinkedList<string> str_list {"gorila", "chimpancé", "mandril"};
     cout << str_list.size() << endl;
 
     for (string s: str_list) {
@@ -29,6 +26,14 @@ int main()
     }
 
     cout << str_list << endl;
+
+    LinkedList<char> char_list {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+    cout << char_list << endl;
+    cout << char_list.size() << endl;
+    // while (!char_list.is_empty()) {
+    //     char_list.remove_front();
+    //     cout << char_list << endl;
+    // }
 
     return 0;
 }

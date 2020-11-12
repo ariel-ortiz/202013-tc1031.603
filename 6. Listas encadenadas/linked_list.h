@@ -3,8 +3,6 @@
 #include <iostream>
 #include <sstream>
 
-using namespace std;
-
 template<typename T>
 class LinkedList {
 
@@ -17,6 +15,14 @@ public:
         _sentinel->prev = _sentinel;
         _sentinel->next = _sentinel;
         _count = 0;
+    }
+
+    // O(N)
+    LinkedList(std::initializer_list<T> args): LinkedList()
+    {
+        for (T data: args) {
+            insert_back(data);
+        }
     }
 
     LinkedList(const LinkedList<T>&) = delete;
@@ -58,9 +64,9 @@ public:
     }
 
     // O(N)
-    string to_string() const
+    std::string to_string() const
     {
-        ostringstream oss;
+        std::ostringstream oss;
         oss << "[";
         bool first_time = true;
 
@@ -80,6 +86,11 @@ public:
     int size() const
     {
         return _count;
+    }
+
+    bool is_empty() const
+    {
+        return size() == 0;
     }
 
 private:
@@ -142,7 +153,7 @@ public:
 };
 
 template<typename T>
-ostream& operator<<(ostream& os, const LinkedList<T>& list)
+std::ostream& operator<<(std::ostream& os, const LinkedList<T>& list)
 {
     return os << list.to_string();
 }
