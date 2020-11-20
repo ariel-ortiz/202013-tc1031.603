@@ -69,11 +69,15 @@ public:
         _in_order(_root, result);
     }
 
+    // Time complexity: O(N)
+    // Space complexity: O(N)
     void pre_order(std::vector<T>& result)
     {
         _pre_order(_root, result);
     }
 
+    // Time complexity: O(N)
+    // Space complexity: O(N)
     void post_order(std::vector<T>& result)
     {
         _post_order(_root, result);
