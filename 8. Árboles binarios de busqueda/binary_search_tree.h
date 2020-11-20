@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template<typename T>
 class BinarySearchTree {
@@ -83,6 +84,12 @@ public:
         _post_order(_root, result);
     }
 
+    // Time complexity: O(N)
+    int height() const
+    {
+       return _height(_root);
+    }
+
 private:
 
     struct Node {
@@ -103,7 +110,7 @@ private:
         }
     }
 
-    void _in_order(Node* current, std::vector<T>& result)
+    void _in_order(Node* current, std::vector<T>& result) const
     {
         if (current != nullptr)
         {
@@ -113,7 +120,7 @@ private:
         }
     }
 
-    void _pre_order(Node* current, std::vector<T>& result)
+    void _pre_order(Node* current, std::vector<T>& result) const
     {
         if (current != nullptr)
         {
@@ -123,7 +130,7 @@ private:
         }
     }
 
-    void _post_order(Node* current, std::vector<T>& result)
+    void _post_order(Node* current, std::vector<T>& result) const
     {
         if (current != nullptr)
         {
@@ -131,6 +138,16 @@ private:
             _post_order(current->right, result);
             result.push_back(current->data);
         }
+    }
+
+    int _height(Node* current) const
+    {
+        if (current == nullptr) {
+            return -1;
+        }
+        return std::max(
+            _height(current->left),
+            _height(current->right)) + 1;
     }
 
     Node* _root = nullptr;
